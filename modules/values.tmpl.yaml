@@ -23,6 +23,8 @@ apps:
     enabled: false
   efs-provisioner:
     enabled: false
+  external-dns-aws:
+    enabled: false
   keycloak:
     enabled: ${keycloak.enable}
   kube-prometheus-stack:

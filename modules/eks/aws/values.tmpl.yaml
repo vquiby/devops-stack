@@ -2,6 +2,13 @@
 apps:
   efs-provisioner:
     enabled: ${enable_efs}
+  cert-manager:
+    enabled: false
+  traefik:
+    enabled: false
+
+external-dns-aws:
+  iam_role_arn: ${loki_assumable_role_arn}
 
 argo-cd:
   server:
@@ -9,25 +16,89 @@ argo-cd:
       admin.enabled: "false"
     extraArgs:
       - --insecure
-
-cert-manager:
-  serviceAccount:
-    annotations:
-      eks.amazonaws.com/role-arn: ${cert_manager_assumable_role_arn}
-  clusterIssuers:
-    letsencrypt:
-      enabled: true
-    acme:
-      solvers:
-        - dns01:
-            route53:
-              region: ${aws_default_region}
+    service:
+      type: NodePort
+    ingress:
+      paths:
+        - /*
+      annotations:
+        kubernetes.io/ingress.class: alb
+        alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
+        alb.ingress.kubernetes.io/group.name: ${cluster_name}
+        alb.ingress.kubernetes.io/scheme: internet-facing
+        alb.ingress.kubernetes.io/ssl-redirect: '443'
+        alb.ingress.kubernetes.io/conditions.argogrpc: |
+          [{"field":"http-header","httpHeaderConfig":{"httpHeaderName": "Content-Type", "values":["application/grpc"]}}]
+      extraPaths:
+        - path: /*
+          backend:
+            serviceName: argogrpc
+            servicePort: 80
 
 efs-provisioner:
   efsProvisioner:
     efsFileSystemId: ${efs_filesystem_id}
     awsRegion: ${aws_default_region}
     dnsName: ${efs_dns_name}
+
+kube-prometheus-stack:
+  alertmanager:
+    service:
+      type: NodePort
+    ingress:
+      paths:
+        - /*
+      annotations:
+        kubernetes.io/ingress.class: alb
+        alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
+        alb.ingress.kubernetes.io/group.name: ${cluster_name}
+        alb.ingress.kubernetes.io/scheme: internet-facing
+        alb.ingress.kubernetes.io/ssl-redirect: '443'
+  grafana:
+    service:
+      type: NodePort
+    ingress:
+      path: /*
+      annotations:
+        kubernetes.io/ingress.class: alb
+        alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
+        alb.ingress.kubernetes.io/group.name: ${cluster_name}
+        alb.ingress.kubernetes.io/scheme: internet-facing
+        alb.ingress.kubernetes.io/ssl-redirect: '443'
+  prometheus:
+    service:
+      type: NodePort
+    ingress:
+      paths:
+        - /*
+      annotations:
+        kubernetes.io/ingress.class: alb
+        alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
+        alb.ingress.kubernetes.io/group.name: ${cluster_name}
+        alb.ingress.kubernetes.io/scheme: internet-facing
+        alb.ingress.kubernetes.io/ssl-redirect: '443'
+
+thanos:
+  bucketweb:
+    service:
+      type: NodePort
+    ingress:
+      annotations:
+        kubernetes.io/ingress.class: alb
+        alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
+        alb.ingress.kubernetes.io/group.name: ${cluster_name}
+        alb.ingress.kubernetes.io/scheme: internet-facing
+        alb.ingress.kubernetes.io/ssl-redirect: '443'
+  queryFrontend:
+    service:
+      type: NodePort
+    ingress:
+      annotations:
+        kubernetes.io/ingress.class: alb
+        alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
+        alb.ingress.kubernetes.io/group.name: ${cluster_name}
+        alb.ingress.kubernetes.io/scheme: internet-facing
+        alb.ingress.kubernetes.io/ssl-redirect: '443'
 
 loki-stack:
   loki:
@@ -54,15 +125,6 @@ loki-stack:
     serviceAccount:
       annotations:
         eks.amazonaws.com/role-arn: ${loki_assumable_role_arn}
-
-traefik:
-  ports:
-    web:
-      hostPort: 80
-    websecure:
-      hostPort: 443
-  service:
-    type: NodePort
 
 cluster-autoscaler:
   awsRegion: ${aws_default_region}

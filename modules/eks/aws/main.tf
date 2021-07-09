@@ -6,6 +6,8 @@ locals {
   kubeconfig                        = module.cluster.kubeconfig
 }
 
+data "aws_region" "current" {}
+
 data "aws_vpc" "this" {
   id = var.vpc_id
 }
@@ -54,13 +56,9 @@ provider "kubernetes" {
   token                  = local.kubernetes_token
 }
 
-locals {
-  ingress_worker_group = merge(var.worker_groups.0, { target_group_arns = concat(module.nlb.target_group_arns, module.nlb_private.target_group_arns) })
-}
-
 module "cluster" {
   source  = "terraform-aws-modules/eks/aws"
-  version = "15.1.0"
+  version = "15.2.0"
 
   cluster_name    = var.cluster_name
   cluster_version = var.cluster_version
@@ -79,7 +77,7 @@ module "cluster" {
   write_kubeconfig = false
   map_roles        = var.map_roles
 
-  worker_groups = concat([local.ingress_worker_group], try(slice(var.worker_groups, 1, length(var.worker_groups)), []))
+  worker_groups = var.worker_groups
 
   kubeconfig_aws_authenticator_command      = var.kubeconfig_aws_authenticator_command
   kubeconfig_aws_authenticator_command_args = var.kubeconfig_aws_authenticator_command_args
@@ -143,9 +141,8 @@ module "argocd" {
     templatefile("${path.module}/values.tmpl.yaml",
       {
         aws_default_region              = data.aws_region.current.name
-        cert_manager_assumable_role_arn = module.iam_assumable_role_cert_manager.iam_role_arn,
-        loki_assumable_role_arn         = module.iam_assumable_role_loki.iam_role_arn,
-        loki_bucket_name                = aws_s3_bucket.loki.id,
+        loki_assumable_role_arn         = module.iam_assumable_role_loki.iam_role_arn
+        loki_bucket_name                = aws_s3_bucket.loki.id
         enable_efs                      = var.enable_efs
         efs_filesystem_id               = var.enable_efs ? module.efs.0.this_efs_mount_target_file_system_id : ""
         efs_dns_name                    = var.enable_efs ? module.efs.0.this_efs_mount_target_full_dns_name : ""
@@ -155,6 +152,8 @@ module "argocd" {
     ),
     var.app_of_apps_values_overrides,
   ]
+
+  #wait_for_app_of_apps_timeout = 240
 
   depends_on = [
     module.cluster,

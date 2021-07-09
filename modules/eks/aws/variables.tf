@@ -9,6 +9,11 @@ variable "base_domain" {
   type        = string
 }
 
+variable "route53_zone_id" {
+  description = "ID of the route53 zone used for cert-manager DNS validations"
+  type        = string
+}
+
 variable "cluster_endpoint_public_access_cidrs" {
   description = "List of CIDR blocks which can access the Amazon EKS public API server endpoint."
   type        = list(string)

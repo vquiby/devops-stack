@@ -153,3 +153,9 @@ variable "repositories" {
   type        = map(string)
   default     = {}
 }
+
+variable "wait_for_app_of_apps_timeout" {
+  description = "Time in seconds to wait for app of apps"
+  type        = number
+  default     = 60
+}

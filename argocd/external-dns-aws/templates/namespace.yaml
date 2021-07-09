@@ -1,0 +1,4 @@
+api: v1
+kind: Namespace
+metadata:
+  name: external-dns
