@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Continuous Delivery &amp; GitOps :: DevOps Stack</title>
-    <meta name="generator" content="Antora 2.3.4">
+    <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GDBX9466LL"></script>
@@ -16,25 +16,17 @@
 <header class="header">
   <nav class="navbar">
     <div class="navbar-brand">
-      <a class="navbar-item" href="https://devops-stack.io"><img width="200px" src="/images/devops-stack-logo_light_by_c2c_black.png"/></a>
+      <a class="navbar-item" href="https://devops-stack.io"><img width="200px" src="../../../_/img/devops-stack-logo_light_by_c2c_black.png"/></a>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
         <span></span>
         <span></span>
       </button>
-    </div>    
+    </div>
     <div id="topbar-nav" class="navbar-menu">
       <div class="navbar-end">
         <a class="navbar-item" href="https://github.com/camptocamp/devops-stack"><i class="fa fa-github-alt"></i>&nbsp;GitHub</a>
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link" href="#">Products</a>
-          <div class="navbar-dropdown">
-            <a class="navbar-item" href="https://terraboard.io">Terraboard</a>
-            <a class="navbar-item" href="https://bivac.io">Bivac</a>
-            <a class="navbar-item" href="https://camptocamp.github.io/facterdb">FacterDB</a>
-          </div>
-        </div>
-        <a class="navbar-item" href="https://camptocamp.com">Camptocamp</a>
+        <a class="navbar-item" href="https://www.camptocamp.com">Camptocamp</a>
       </div>
     </div>
   </nav>
@@ -321,7 +313,7 @@
     <a class="version" href="../../0.30.0/explanations/gitops.html">0.30.0</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/camptocamp/devops-stack/blob/v0.36.0/docs/modules/ROOT/pages/explanations/gitops.adoc"><i class="fa fa-github-alt"></i>&nbsp;Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/vquiby/devops-stack/blob/v0.36.0/docs/modules/ROOT/pages/explanations/gitops.adoc"><i class="fa fa-github-alt"></i>&nbsp;Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -371,11 +363,11 @@ all applications to the cluster.</p>
 <p>Argo CD monitors Kubernetes resources and can keep them synchronized
 with their target state.
 The cluster applications deployed by Argo CD can easily be
-<a href="#ROOT:howtos/tune_cluter_apps.adoc" class="page unresolved">tuned to fit your needs</a>.</p>
+<a href="#ROOT:howtos/tune_cluter_apps.adoc" class="xref unresolved">tuned to fit your needs</a>.</p>
 </div>
 <div class="paragraph">
 <p>You can also take advantage of Argo CD to
-<a href="#ROOT:howtos/deploy_own_app.adoc" class="page unresolved">deploy your own applications</a>.</p>
+<a href="#ROOT:howtos/deploy_own_app.adoc" class="xref unresolved">deploy your own applications</a>.</p>
 </div>
 </div>
 </div>
@@ -384,13 +376,8 @@ The cluster applications deployed by Argo CD can easily be
 </main>
 </div>
 <footer class="footer">
-  <p>Copyright © Camptocamp 2021 — All Rights Reserved.</p>
+  <p>Copyright © Camptocamp <script> document.write(new Date().getFullYear()) </script> — All Rights Reserved</p>
 </footer>
-<script>
-  window.antora = window.antora || {}
-  window.antora.basePath = '../../..'
-  window.antora.pagePath = '/devops-stack/0.36.0/explanations/gitops.html'
-</script>
 <script src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/terraform.js"></script>
 <script async src="../../../_/js/vendor/highlight.js"></script>

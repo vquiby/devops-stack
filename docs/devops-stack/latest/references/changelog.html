@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Changelog :: DevOps Stack</title>
-    <meta name="generator" content="Antora 2.3.4">
+    <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GDBX9466LL"></script>
@@ -16,25 +16,17 @@
 <header class="header">
   <nav class="navbar">
     <div class="navbar-brand">
-      <a class="navbar-item" href="https://devops-stack.io"><img width="200px" src="/images/devops-stack-logo_light_by_c2c_black.png"/></a>
+      <a class="navbar-item" href="https://devops-stack.io"><img width="200px" src="../../../_/img/devops-stack-logo_light_by_c2c_black.png"/></a>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
         <span></span>
         <span></span>
       </button>
-    </div>    
+    </div>
     <div id="topbar-nav" class="navbar-menu">
       <div class="navbar-end">
         <a class="navbar-item" href="https://github.com/camptocamp/devops-stack"><i class="fa fa-github-alt"></i>&nbsp;GitHub</a>
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link" href="#">Products</a>
-          <div class="navbar-dropdown">
-            <a class="navbar-item" href="https://terraboard.io">Terraboard</a>
-            <a class="navbar-item" href="https://bivac.io">Bivac</a>
-            <a class="navbar-item" href="https://camptocamp.github.io/facterdb">FacterDB</a>
-          </div>
-        </div>
-        <a class="navbar-item" href="https://camptocamp.com">Camptocamp</a>
+        <a class="navbar-item" href="https://www.camptocamp.com">Camptocamp</a>
       </div>
     </div>
   </nav>
@@ -339,7 +331,7 @@
     <a class="version" href="../../0.30.0/references/changelog.html">0.30.0</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/camptocamp/devops-stack/edit/master/docs/modules/ROOT/pages/references/changelog.adoc"><i class="fa fa-github-alt"></i>&nbsp;Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/vquiby/devops-stack/edit/master/docs/modules/ROOT/pages/references/changelog.adoc"><i class="fa fa-github-alt"></i>&nbsp;Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -347,6 +339,68 @@
 </aside>
 <article class="doc">
 <h1 class="page">Changelog</h1>
+<div class="sect1">
+<h2 id="_0_40_0_2021_07_21"><a class="anchor" href="#_0_40_0_2021_07_21"></a><a href="https://github.com/camptocamp/devops-stack/tree/v0.40.0">0.40.0</a> (2021-07-21)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://github.com/camptocamp/devops-stack/compare/v0.39.0&#8230;&#8203;v0.40.0">Full Changelog</a></p>
+</div>
+<div class="paragraph">
+<p><strong>Implemented enhancements:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>feat: create dedicated AppProject for DevOps Stack Applications <a href="https://github.com/camptocamp/devops-stack/pull/685">#685</a> (<a href="https://github.com/mcanevet">mcanevet</a>)</p>
+</li>
+<li>
+<p>feat: allow to configure ArgoCD repositories <a href="https://github.com/camptocamp/devops-stack/pull/686">#686</a> (<a href="https://github.com/mcanevet">mcanevet</a>)</p>
+</li>
+<li>
+<p>feat(aks): create UAI and corresponding AzureIdentities and AzureIdentityBindings <a href="https://github.com/camptocamp/devops-stack/pull/689">#689</a> (<a href="https://github.com/mcanevet">mcanevet</a>)</p>
+</li>
+<li>
+<p>feat: use loose dependencies in Terraform modules <a href="https://github.com/camptocamp/devops-stack/pull/696">#696</a> (<a href="https://github.com/mcanevet">mcanevet</a>)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Documentation:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>fix: update reference adoc files <a href="https://github.com/camptocamp/devops-stack/pull/688">#688</a> (<a href="https://github.com/fsismondi">fsismondi</a>)</p>
+</li>
+<li>
+<p>fix: update reference adoc files <a href="https://github.com/camptocamp/devops-stack/pull/688">#691</a> (<a href="https://github.com/fsismondi">fsismondi</a>)</p>
+</li>
+<li>
+<p>refactor: pipelines documentation <a href="https://github.com/camptocamp/devops-stack/pull/692">#692</a> (<a href="https://github.com/fsismondi">fsismondi</a>)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Fixed Bugs:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>fix: deploy keys should not be tight to the DevOps Stack <a href="https://github.com/camptocamp/devops-stack/pull/687">#687</a> (<a href="https://github.com/mcanevet">mcanevet</a>)</p>
+</li>
+<li>
+<p>fix: dropping aad-pod-identity&#8217;s deprecated forceNameSpaced in favour of new forceNamespaced <a href="https://github.com/camptocamp/devops-stack/pull/690">#690</a> (<a href="https://github.com/fsismondi">fsismondi</a>)</p>
+</li>
+<li>
+<p>fix(aks): expose UAI&#8217;s principal IDs <a href="https://github.com/camptocamp/devops-stack/pull/693">#693</a> (<a href="https://github.com/mcanevet">mcanevet</a>)</p>
+</li>
+<li>
+<p>fix: add missing version contraint on null provider <a href="https://github.com/camptocamp/devops-stack/pull/697">#697</a> (<a href="https://github.com/mcanevet">mcanevet</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_0_39_0_2021_07_05"><a class="anchor" href="#_0_39_0_2021_07_05"></a><a href="https://github.com/camptocamp/devops-stack/tree/v0.39.0">0.39.0</a> (2021-07-05)</h2>
 <div class="sectionbody">
@@ -2780,13 +2834,8 @@ You should spawn a new cluster.</p>
 </main>
 </div>
 <footer class="footer">
-  <p>Copyright © Camptocamp 2021 — All Rights Reserved.</p>
+  <p>Copyright © Camptocamp <script> document.write(new Date().getFullYear()) </script> — All Rights Reserved</p>
 </footer>
-<script>
-  window.antora = window.antora || {}
-  window.antora.basePath = '../../..'
-  window.antora.pagePath = '/devops-stack/latest/references/changelog.html'
-</script>
 <script src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/terraform.js"></script>
 <script async src="../../../_/js/vendor/highlight.js"></script>

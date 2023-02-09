@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Contribute to documentation :: DevOps Stack</title>
-    <meta name="generator" content="Antora 2.3.4">
+    <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GDBX9466LL"></script>
@@ -16,25 +16,17 @@
 <header class="header">
   <nav class="navbar">
     <div class="navbar-brand">
-      <a class="navbar-item" href="https://devops-stack.io"><img width="200px" src="/images/devops-stack-logo_light_by_c2c_black.png"/></a>
+      <a class="navbar-item" href="https://devops-stack.io"><img width="200px" src="../../../_/img/devops-stack-logo_light_by_c2c_black.png"/></a>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
         <span></span>
         <span></span>
       </button>
-    </div>    
+    </div>
     <div id="topbar-nav" class="navbar-menu">
       <div class="navbar-end">
         <a class="navbar-item" href="https://github.com/camptocamp/devops-stack"><i class="fa fa-github-alt"></i>&nbsp;GitHub</a>
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link" href="#">Products</a>
-          <div class="navbar-dropdown">
-            <a class="navbar-item" href="https://terraboard.io">Terraboard</a>
-            <a class="navbar-item" href="https://bivac.io">Bivac</a>
-            <a class="navbar-item" href="https://camptocamp.github.io/facterdb">FacterDB</a>
-          </div>
-        </div>
-        <a class="navbar-item" href="https://camptocamp.com">Camptocamp</a>
+        <a class="navbar-item" href="https://www.camptocamp.com">Camptocamp</a>
       </div>
     </div>
   </nav>
@@ -319,7 +311,7 @@
     <a class="version" href="../../0.30.0/howtos/write_documentation.html">0.30.0</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/camptocamp/devops-stack/blob/v0.33.4/docs/modules/ROOT/pages/howtos/write_documentation.adoc"><i class="fa fa-github-alt"></i>&nbsp;Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/vquiby/devops-stack/blob/v0.33.4/docs/modules/ROOT/pages/howtos/write_documentation.adoc"><i class="fa fa-github-alt"></i>&nbsp;Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -375,7 +367,7 @@ Use the <a href="https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/">
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>* Section
+<pre class="highlightjs highlight"><code class="language-none hljs">* Section
 ** xref:module_name:my_documentation_under_Section.adoc[My documentation's title]</code></pre>
 </div>
 </div>
@@ -390,7 +382,7 @@ Use the <a href="https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/">
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>cd devops-stack
+<pre class="highlightjs highlight"><code class="language-none hljs">cd devops-stack
 docker run --rm -it --user $(id -u) -v $PWD:/tmp/docs \
 -e FORCE_SHOW_EDIT_PAGE_LINK=true -e CI=true \
 docker.io/antora/antora:2.3.4 generate /tmp/docs/antora-playbook.yml \
@@ -402,7 +394,7 @@ docker.io/antora/antora:2.3.4 generate /tmp/docs/antora-playbook.yml \
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>xdg-open file://$PWD/docs/output/index.html</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">xdg-open file://$PWD/docs/output/index.html</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -424,13 +416,8 @@ The environment variables FORCE_SHOW_EDIT_PAGE and CI are only needed if you wan
 </main>
 </div>
 <footer class="footer">
-  <p>Copyright © Camptocamp 2021 — All Rights Reserved.</p>
+  <p>Copyright © Camptocamp <script> document.write(new Date().getFullYear()) </script> — All Rights Reserved</p>
 </footer>
-<script>
-  window.antora = window.antora || {}
-  window.antora.basePath = '../../..'
-  window.antora.pagePath = '/devops-stack/0.33.4/howtos/write_documentation.html'
-</script>
 <script src="../../../_/js/site.js"></script>
 <script async src="../../../_/js/vendor/terraform.js"></script>
 <script async src="../../../_/js/vendor/highlight.js"></script>
